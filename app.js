@@ -1,8 +1,10 @@
 const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+app.use(cors());  // cors를 미들웨어로 사용
+const port = 3080;
 
 // Spotify API 설정
 const spotifyApi = new SpotifyWebApi({
@@ -38,8 +40,12 @@ app.get('/search', async (req, res) => {
     const data = await spotifyApi.searchTracks(query);
     const tracks = data.body.tracks.items.map(track => ({
       name: track.name,
-      artist: track.artists[0].name,
-      album: track.album.name,
+      artists: track.artists.map(artist => artist.name),
+      album: {
+        name: track.album.name,
+        images: track.album.images
+      },
+      duration_ms: track.duration_ms,
       preview_url: track.preview_url
     }));
 
