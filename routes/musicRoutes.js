@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 // Spotify API 설정
 const spotifyApi = new SpotifyWebApi({
