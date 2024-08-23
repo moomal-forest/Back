@@ -1,15 +1,11 @@
 const express = require('express');
+const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());  // cors를 미들웨어로 사용
-const port = 3080;
 
 // Spotify API 설정
 const spotifyApi = new SpotifyWebApi({
-  clientId: '10f74f0d068b43e4a672cde78c8e6676',
-  clientSecret: 'a90616967ae94de88f59d2b76adfb533'
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET
 });
 
 // Spotify 액세스 토큰 갱신
@@ -29,7 +25,7 @@ refreshAccessToken();
 // 1시간마다 액세스 토큰 갱신
 setInterval(refreshAccessToken, 3600000);
 
-app.get('/search', async (req, res) => {
+router.get('/search', async (req, res) => {
   const { query } = req.query;
 
   if (!query) {
@@ -56,6 +52,4 @@ app.get('/search', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+module.exports = router;
