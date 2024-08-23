@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/user');
 
 /* 현서와 얘기 필요
--사용자 정보 post (회원가입) 
 
 -마이페이지에서 사용자 정보 get
 
