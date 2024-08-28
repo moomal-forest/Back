@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Diary = require('../models/diary');
+const { createNotification } = require('../utils/notificationUtil');
 
-// 사용자가 다이어리 생성
+//사용자가 다이어리 생성
+
+/*
 router.post('/', async (req, res) => {
     const { name, color, type, neighbors } = req.body;
     const userId = req.user.id; // 현재 로그인한 사용자의 ID (인증 미들웨어에서 제공된다고 가정)
@@ -11,10 +14,11 @@ router.post('/', async (req, res) => {
         return res.status(400).json({error: "다이어리 제목과 색상을 입력해야 합니다."});
     }
   
-    const members = [userId, ...(neighbors || [])]; //userId? userID?
+    const members = ['llgolore', ...(neighbors || [])];
+*/
 
 
-/* 포스트맨 테스트용 router.post() - userID를 llgalore로 특정지어줌
+// 포스트맨 테스트용 router.post() - userID를 llgalore로 특정지어줌
 router.post('/', async (req, res) => {
     const { name, color, type, neighbors } = req.body;
     const userId = "llgalore"; // ---> 이 부분
@@ -24,7 +28,6 @@ router.post('/', async (req, res) => {
     }
 
     const members = ['llgolore', ...(neighbors || [])];
-*/
 
 
     const diary = new Diary({
@@ -53,7 +56,9 @@ router.post('/', async (req, res) => {
 
 
 
-// 사용자의 모든 다이어리 조회
+//사용자의 모든 다이어리 조회
+/*
+
 router.get('/', async (req, res) => {
   const userId = req.user.id;
   try {
@@ -64,9 +69,9 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: "다이어리 목록을 가져오는데 실패했습니다."})
   }
 });
+*/
 
-
-/* 포스트맨 테스트용
+// 포스트맨 테스트용
 router.get('/', async (req, res) => {
   try {
     const diaryRoutes = await Diary.find().select('name color type');
@@ -76,8 +81,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: "다이어리 목록을 가져오는데 실패했습니다."})
   }
 });
-*/
 
 
 module.exports = router;
-
