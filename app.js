@@ -8,7 +8,11 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const diaryRoutes = require("./routes/diaryRoutes");
 const musicRoutes = require("./routes/musicRoutes");
-const authRoutes = require("./routes/authRoutes"); // 새로운 인증 라우터 추가
+const authRoutes = require("./routes/authRoutes"); 
+const postRoutes = require('./routes/postRoutes');
+const emotionRoutes = require('./routes/emotionRoutes');
+const playlistRoutes = require('./routes/playlistRoutes');
+const notificationRoutes = require('./routes/notificationRoutes'); // 새로운 인증 라우터 추가
 
 dotenv.config();
 
@@ -38,7 +42,11 @@ mongoose
 app.use("/api/users", userRoutes);
 app.use("/api/diaries", diaryRoutes);
 app.use("/api/music", musicRoutes);
-app.use("/api/auth", authRoutes); // 인증 라우터 추가
+app.use("/api/auth", authRoutes); 
+app.use('/api/posts', postRoutes);
+app.use('/api/emotions', emotionRoutes);
+app.use('/api/playlist', playlistRoutes);
+app.use('/api/notifications', notificationRoutes);// 인증 라우터 추가
 
 // 서버의 루트 경로('/')에 대한 GET 요청 처리
 app.get("/", (req, res) => {

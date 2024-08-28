@@ -37,13 +37,13 @@ const usertest2 = async () => {
       // 기존 사용자 삭제 (선택사항)
       await User.deleteMany({});
       console.log('기존 사용자 데이터를 삭제했습니다.');
-  
+
       const user = new User({
         userID: 'llgalore',
         password: 'hashed_password', // 실제 환경에서는 반드시 해시화된 비밀번호를 사용해야 합니다
         fullname: 'Jeong Yeonkyung'
       });
-  
+
       await user.save();
       console.log('테스트 사용자(llgalore)가 성공적으로 추가되었습니다.');
     } catch (error) {
